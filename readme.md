@@ -18,6 +18,7 @@ cd QuoraBackendAPI && npm install
 ```
 PORT=3000
 ATLAS_DB_URL=""
+LOG_DB_URL=""
 ```
 
 4. Start the backend server
