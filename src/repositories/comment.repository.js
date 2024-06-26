@@ -1,5 +1,6 @@
 const { Comment } = require("./../models");
-const { NotFound } = require("./../errors/notfound.error");
+const NotFound = require("./../errors/notfound.error");
+const logger = require("./../config/logger.config");
 
 class CommentRepository {
 	async createCommentOnAnswer(answerId, userId, text) {
@@ -10,7 +11,9 @@ class CommentRepository {
 				user_id: userId,
 				text: text,
 			});
-
+			logger.info(
+				`Comment.Repository: [createCommentOnAnswer] - New comment on answer with id: ${answerId} successfully created by userId: ${userId}`
+			);
 			return newComment;
 		} catch (error) {
 			console.error("Error creating comment on answer:", error);
@@ -27,6 +30,9 @@ class CommentRepository {
 				text: text,
 			});
 
+			logger.info(
+				`Comment.Repository: [createCommentOnComment] - New comment on comment with id: ${commentId} successfully created by userId: ${userId}`
+			);
 			return newComment;
 		} catch (error) {
 			console.error("Error creating comment on comment:", error);
